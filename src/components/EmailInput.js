@@ -22,27 +22,30 @@ export default function EmailInput({
                     <input
                         type="text"
                         className="form-control"
+                        name="email"
                         ref={userRef}
                         autoComplete="off"
                         onChange={(e) => setUser(e.target.value)}
                         value={user}
-                        required
                         aria-invalid={validName ? "false" : "true"}
                         aria-describedby="uidnote"
                         onFocus={() => setUserFocus(true)}
-                        onBlur={() => setUserFocus(false)}
+                        onBlur={() => {setUserFocus(false)}}
+                        placeholder="Enter email address"
+                        
                     /> :
                     <input
                         type="text"
                         className="form-control"
-                        id="email"
+                        name="email"
                         aria-describedby="email"
                         ref={userRef}
                         autoComplete="off"
                         {...userAttribs}
-                        required
+                        placeholder="Enter email address"
                     />
             }
+
         </>
     );
 }

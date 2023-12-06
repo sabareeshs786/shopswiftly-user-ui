@@ -4,7 +4,7 @@ const handleError = ({err, setErrMsg, errRef}) => {
     } else if (err.response?.status === 400) {
         setErrMsg('Missing Username or Password');
     } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized');
+        setErrMsg('Invalid Email id or Password');
     } else {
         setErrMsg('Login Failed');
     }

@@ -17,17 +17,16 @@ export default function ConfirmPassword(){
                 className="form-control"
                 onChange={(e) => setMatchPwd(e.target.value)}
                 value={matchPwd}
-                required
                 aria-invalid={validMatch ? "false" : "true"}
                 aria-describedby="confirmnote"
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
+                placeholder="Confirm password"
             />
             <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                 <FontAwesomeIcon icon={faInfoCircle} />
                 Must match the first password input field.
             </p>
-
         </>
     )
 }

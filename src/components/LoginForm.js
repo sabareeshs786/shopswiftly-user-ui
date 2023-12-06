@@ -6,7 +6,7 @@ import SubmitButton from "./SubmitButton";
 import LoginContext from "../context/LoginContext";
 
 export default function LoginForm() {
-    const { handleSubmit, toggleCheck, check, userRef, userAttribs, pwd, setPwd } = useContext(LoginContext);
+    const { handleSubmit, toggleCheck, check, userRef, userAttribs, pwd, setPwd, user} = useContext(LoginContext);
     useEffect(() => {
         userRef.current.focus();
     }, []);
@@ -16,7 +16,8 @@ export default function LoginForm() {
             <div className="mb-3">
                 <EmailInput 
                     userRef={userRef} 
-                    userAttribs={userAttribs} 
+                    userAttribs={userAttribs}
+                    user={user}
                 />
                 <PasswordInput 
                     pwd={pwd} 

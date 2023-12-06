@@ -13,20 +13,22 @@ export default function PasswordInput({ pwd, setPwd, forSignup = false, validPwd
                 forSignup ? <input
                     type="password"
                     className="form-control"
+                    name="password"
                     onChange={(e) => setPwd(e.target.value)}
                     value={pwd}
-                    required
                     aria-invalid={validPwd ? "false" : "true"}
                     aria-describedby="pwdnote"
                     onFocus={() => setPwdFocus(true)}
                     onBlur={() => setPwdFocus(false)}
+                    placeholder="Enter password"
                 /> :
                     <input
                         type="password"
                         className="form-control"
+                        name="password"
                         onChange={(e) => setPwd(e.target.value)}
                         value={pwd}
-                        required
+                        placeholder="Enter password"
                     />
             }
             { forSignup &&
