@@ -1,0 +1,29 @@
+@media (max-width: 575.98px){
+    .carousel{
+        width: 100%; 
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px){
+    .carousel{
+        width: 100%; 
+    }
+}
+
+@media (min-width: 992px){
+    .carousel{
+        width: 80%; 
+    }
+}
+
+.carousel{
+    margin: 0 auto;
+}
+
+.carousel-control-prev, .carousel-control-next{
+    width: 3%;
+    height: 30%;
+    margin: auto;
+    background-color: white;
+    opacity: 1;
+}
