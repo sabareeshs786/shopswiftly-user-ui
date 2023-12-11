@@ -1,13 +1,18 @@
 import Carousel from "./Carousel";
 import HomeHeader from "./HomeHeader";
 import Navigation from "./Navigation";
+import SwiperComponent1 from "./SwiperComponent";
+import '../css/main.css';
 
 function HomeContainer() {
     return (
         <>
             <HomeHeader />
-            <Navigation />
-            <Carousel />
+            <div className="main-container">
+                <Navigation />
+                <Carousel />
+                <SwiperComponent1 />
+            </div>
         </>
     )
 }

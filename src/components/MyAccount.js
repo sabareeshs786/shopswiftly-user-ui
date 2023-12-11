@@ -10,7 +10,7 @@ export default function MyAccount() {
                         <FontAwesomeIcon icon={faUserCircle} className="cust-svg"
                             style={{ width: '1.5rem', height: '1.5rem' }} />
                     </div>
-                    <div>My account</div>
+                    <div className='sm-hide'>My account</div>
                 </div>
             </a>
         </div>

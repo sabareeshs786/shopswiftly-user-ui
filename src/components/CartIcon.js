@@ -8,7 +8,7 @@ export default function CartIcon(){
             <div>
             <Cart2 className="cust-svg" style={{width:'1.5rem', height:'1.5rem'}}></Cart2>
             </div>
-            <div>Cart</div>
+            <div className="sm-hide">Cart</div>
           </div>
         </a>
       </div>

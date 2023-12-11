@@ -15,13 +15,13 @@ export default function Carousel() {
                     carouselImgs.map((imageId, index) => {
                         if (index === 0) {
                             return (
-                                <div className="carousel-item active">
+                                <div className="carousel-item active"  key={imageId}>
                                     <CarouselImageDisplay imageId={imageId} />
                                 </div>
                             )
                         }
                         return (
-                            <div className="carousel-item">
+                            <div className="carousel-item" key={imageId}>
                                 <CarouselImageDisplay imageId={imageId} />
                             </div>
                         )

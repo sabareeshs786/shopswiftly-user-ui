@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
-import '../css/home.css';
 import HomeContainer from "./HomeContainer";
+import '../css/common.css';
 
 const Home = () => {
   const navigate = useNavigate();

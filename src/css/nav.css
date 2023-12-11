@@ -1,7 +1,4 @@
 @media (max-width: 575.98px){
-    html {
-        font-size: 1.8vw;
-    }
 
     .cust-container-all-cate {
         position: relative;
@@ -19,10 +16,6 @@
 }
 
 @media (min-width: 576px) and (max-width: 991.98px){
-    html {
-        font-size: 1.4vw;
-    }
-
     .cust-container-all-cate {
         position: relative;
         width: 100%;
@@ -39,13 +32,9 @@
 }
 
 @media (min-width: 992px){
-    html {
-        font-size: 0.9vw;
-    }
-
     .cust-container-all-cate {
         position: relative;
-        width: 80%;
+        width: 100%;
         margin: 0px auto;
         padding: 0.5rem;
         display: flex;
@@ -58,7 +47,7 @@
     }
 
     .carousel{
-        width: 80%; 
+        width: 100%; 
         margin: 0 auto;
     }
 }
@@ -105,7 +94,7 @@
         background-color: #f1f1f1
     }
 
-    .dropdown-menu>li:hover>.submenu {
+    .dropdown-menu > li:hover > .submenu {
         display: block;
     }
 
@@ -155,12 +144,12 @@
     font-size: 0.9rem;
 }
 
-.cate-image>img {
+.cate-image > img {
     width: auto;
     max-width: 70px;
 }
 
-.cate-item>a {
+.cate-item > a {
     position: relative;
 }
 
