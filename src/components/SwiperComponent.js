@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../css/styles.css";
+import "../css/swiper.css";
 
 export default function App() {
   return (
@@ -23,15 +23,19 @@ export default function App() {
           </div>
         </Link>
         <Swiper
-          slidesPerView={4}
+          slidesPerView={3}
           centeredSlides={false}
-          slidesPerGroup={4}
+          slidesPerGroup={3}
           grabCursor={true}
           keyboard={{
             enabled: true,
           }}
           breakpoints={{
-            769: {
+            576: {
+              slidesPerView: 4,
+              slidesPerGroup: 4,
+            },
+            992: {
               slidesPerView: 6,
               slidesPerGroup: 6,
             },
@@ -45,11 +49,9 @@ export default function App() {
 
           <SwiperSlide>
             <Link to="/camera">
-              <div className="slide-image-container">
                 <img src="/electronics/camera.webp" />
-              </div>
               <div className="slide-image-caption sm-font">
-                caption
+                Camera
               </div>
               <div className="slide-image-description sm-font">
                 description
@@ -58,9 +60,7 @@ export default function App() {
           </SwiperSlide>
           <SwiperSlide>
             <Link to="/keyboard">
-              <div className="slide-image-container">
                 <img src="/electronics/keyboard.webp" />
-              </div>
               <div className="slide-image-caption sm-font">
                 caption
               </div>
@@ -69,11 +69,10 @@ export default function App() {
               </div>
             </Link>
           </SwiperSlide>
+
           <SwiperSlide>
             <Link to="/camera">
-              <div className="slide-image-container">
                 <img src="/electronics/camera.webp" />
-              </div>
               <div className="slide-image-caption sm-font">
                 caption
               </div>
@@ -84,9 +83,191 @@ export default function App() {
           </SwiperSlide>
           <SwiperSlide>
             <Link to="/keyboard">
-              <div className="slide-image-container">
                 <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
               </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/camera">
+                <img src="/electronics/camera.webp" />
+              <div className="slide-image-caption sm-font">
+                caption
+              </div>
+              <div className="slide-image-description sm-font">
+                description
+              </div>
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/keyboard">
+                <img src="/electronics/keyboard.webp" />
               <div className="slide-image-caption sm-font">
                 caption
               </div>

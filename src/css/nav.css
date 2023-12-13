@@ -52,6 +52,11 @@
     }
 }
 
+.cust-container-all-cate {
+    background-color: white;
+    margin-bottom: 0.5rem;
+}
+
 .navbar-nav .nav-item.dropdown:hover>.dropdown-menu {
     display: block;
 }

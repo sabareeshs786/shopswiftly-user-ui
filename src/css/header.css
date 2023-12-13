@@ -1,4 +1,3 @@
-/* Phone devices */
 @media (max-width: 575.98px) {
     .cust-container {
         width: 100%;
@@ -33,7 +32,6 @@
     }
 }
 
-/* Tablet devices */
 @media (min-width: 576px) and (max-width: 991.98px) {
     .cust-container {
         width: 100%;
@@ -60,7 +58,6 @@
     }
 }
 
-/* Large devices */
 @media (min-width: 992px) {
     .cust-container {
         width: 80%;
@@ -78,7 +75,7 @@
 
 .cust-container {
     margin: 0px auto;
-    padding-top: 0.5rem;
+    padding-block: 0.5rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -145,6 +142,5 @@ a {
 .cust-svg {
     max-width: 100%;
     height: auto;
-    /* To maintain the aspect ratio */
     margin-right: 0.5rem;
 }
