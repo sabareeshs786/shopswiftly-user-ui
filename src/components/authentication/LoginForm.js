@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import EmailInput from "./EmailInput";
 import PasswordInput from "./PasswordInput";
 import PersistCheckBox from "./PersistCheckBox";
-import SubmitButton from "./SubmitButton";
-import LoginContext from "../context/LoginContext";
+import SubmitButton from "../generic/SubmitButton";
+import LoginContext from "../../context/LoginContext";
 
 export default function LoginForm() {
     const { handleSubmit, toggleCheck, check, userRef, userAttribs, pwd, setPwd, user} = useContext(LoginContext);

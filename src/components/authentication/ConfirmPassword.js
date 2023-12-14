@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import SignUpContext from "../context/SignUpContext";
+import SignUpContext from "../../context/SignUpContext";
 
 export default function ConfirmPassword(){
     const { validMatch, matchPwd, setMatchPwd, setMatchFocus, matchFocus} = useContext(SignUpContext);

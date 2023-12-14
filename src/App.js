@@ -1,16 +1,20 @@
-import Signup from './components/Signup';
-import Login from './components/Login';
+import { Routes, Route } from 'react-router-dom';
+
+import Signup from './components/authentication/Signup';
+import Login from './components/authentication/Login';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import Editor from './components/Editor';
 import Admin from './components/Admin';
-import Missing from './components/Missing';
-import Unauthorized from './components/Unauthorized';
+import Missing from './components/generic/Missing';
+import Unauthorized from './components/authentication/Unauthorized';
 import Lounge from './components/Lounge';
 import LinkPage from './components/LinkPage';
-import RequireAuth from './components/RequireAuth';
-import PersistLogin from './components/PersistLogin';
-import { Routes, Route } from 'react-router-dom';
+import RequireAuth from './components/authentication/RequireAuth';
+import PersistLogin from './components/authentication/PersistLogin';
+import Mobiles from './components/Mobiles';
+import LayoutAuth from './components/LayoutAuth';
+import LayoutNav from './components/LayoutNav';
 
 const ROLES = {
   'User': 2001,
@@ -22,14 +26,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        {/* public routes */}
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Signup />} />
-        <Route path="linkpage" element={<LinkPage />} />
-        <Route path="unauthorized" element={<Unauthorized />} />
-
-        {/* we want to protect these routes */}
+      {/* Protected routes */}
+      <Route path="/" element={<Layout />} >
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="/" element={<Home />} />
@@ -39,7 +37,6 @@ function App() {
             <Route path="editor" element={<Editor />} />
           </Route>
 
-
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             <Route path="admin" element={<Admin />} />
           </Route>
@@ -48,10 +45,26 @@ function App() {
             <Route path="lounge" element={<Lounge />} />
           </Route>
         </Route>
-
-        {/* catch all */}
-        <Route path="*" element={<Missing />} />
       </Route>
+
+      <Route path="/" element={<LayoutNav />}>
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+            <Route path="mobiles" element={<Mobiles />} />
+          </Route>
+        </Route>
+      </Route>
+
+      {/* These are publicly accessible routes */}
+      <Route path="/" element={<LayoutAuth />}>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="linkpage" element={<LinkPage />} />
+        <Route path="unauthorized" element={<Unauthorized />} />
+      </Route>
+
+      {/* catch all */}
+      <Route path="*" element={<Missing />} />
     </Routes>
   );
 }

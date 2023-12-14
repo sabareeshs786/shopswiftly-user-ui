@@ -1,17 +1,17 @@
-import Logo from "./Logo";
-import SearchBar from "./SearchBar";
-import MyAccount from "./MyAccount";
-import CartIcon from "./CartIcon";
+import Logo from "../components/generic/Logo";
+import SearchBar from "../components/generic/SearchBar";
+import MyAccount from "./generic/MyAccount";
+import CartIcon from "../components/generic/CartIcon";
 import '../css/header.css';
 
-function HomeHeader() {
+function HomeHeader({bgBlue=false}) {
     return (
-        <div className="my-container">
-            <div className="cust-container">
-                <Logo forLogin={false} />
+        <div className="my-container" style={{backgroundColor: bgBlue ? 'blue': 'white'}}>
+            <div className="cust-container" style={{backgroundColor: bgBlue ? 'blue': 'white'}}>
+                <Logo bgBlue={bgBlue} />
                 <SearchBar />
-                <MyAccount />
-                <CartIcon />
+                <MyAccount bgBlue={bgBlue}/>
+                <CartIcon bgBlue={bgBlue}/>
             </div>
         </div>
     )

@@ -3,8 +3,8 @@ import EmailInput from "./EmailInput";
 import PhoneNumber from "./PhoneNumber";
 import PasswordInput from "./PasswordInput";
 import ConfirmPassword from "./ConfirmPassword";
-import SubmitButton from "./SubmitButton";
-import SignUpContext from "../context/SignUpContext";
+import SubmitButton from "../generic/SubmitButton";
+import SignUpContext from "../../context/SignUpContext";
 
 export default function SignupForm() {
     const { handleSubmit, setUserFocus, setUser, user, 

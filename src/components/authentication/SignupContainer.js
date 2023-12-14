@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import '../css/login-signup.css';
-import '../css/signup.css';
-import Logo from "./Logo";
-import ErrorMsg from "./ErrorMsg";
+import '../../css/login-signup.css';
+import '../../css/signup.css';
+import ErrorMsg from "../generic/ErrorMsg";
 import SignupForm from "./SignupForm";
-import SignUpContext from "../context/SignUpContext";
+import SignUpContext from "../../context/SignUpContext";
 
 function SignupContainer() {
 
@@ -14,10 +13,6 @@ function SignupContainer() {
     return (
         <>
             {success ? (
-                <section className="auth-container">
-                    <div className="image-container">
-                        <Logo />
-                    </div>
                     <div className="card custom-card">
                         <div className="card-body">
                             <h1>Success!</h1>
@@ -26,12 +21,8 @@ function SignupContainer() {
                             </p>
                         </div>
                     </div>
-                </section>
             ) : (
-                <section className="auth-container">
-                    <div className="image-container">
-                        <Logo />
-                    </div>
+                    <>
                     <div className="card custom-card">
                         <div className="card-body">
                             <h3>Sign Up</h3>
@@ -47,7 +38,7 @@ function SignupContainer() {
                         to="/login"
                         role="button"
                     >Sign in</Link>
-                </section>
+                    </>
             )}
         </>
     );

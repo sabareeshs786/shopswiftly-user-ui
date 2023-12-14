@@ -1,4 +1,4 @@
-import { SignUpContextProvider } from "../context/SignUpContext";
+import { SignUpContextProvider } from "../../context/SignUpContext";
 import SignupContainer from "./SignupContainer";
 
 const Signup = () => {

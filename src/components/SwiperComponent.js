@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../css/swiper.css";
 
-export default function App() {
+function SwiperComponent() {
   return (
     <>
       <div className="swiper-block">
@@ -282,3 +282,5 @@ export default function App() {
     </>
   );
 }
+
+export default SwiperComponent;
