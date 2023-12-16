@@ -35,7 +35,7 @@ function MobileContainer() {
             <div key={i} className="item-flex-container">
               <div className="item-flex-header">
                 <h2>{e && e.length > 0 ? e[0].brand.charAt(0).toUpperCase() + e[0].brand.slice(1) : ''} smartphones</h2>
-                <Link to={"/mobiles?brand=" + e[0].brand + "&sort=asc"}><button className='btn btn-primary'>View all</button></Link>
+                <Link to={"/mobiles?brand=" + e[0].brand + "&sort=price"}><button className='btn btn-primary'>View all</button></Link>
               </div>
               <div className='item-flex-items'>
                 {e && e.length > 0 && e.map((imgData, index) =>

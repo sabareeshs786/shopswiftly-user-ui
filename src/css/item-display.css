@@ -1,0 +1,40 @@
+.main-container-item{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.cust-filter{
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    width: 20%;
+    height: 100vh;
+    background-color: white;
+}
+
+.cust-filter-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cust-filter-text{
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.cust-filter-header a{
+    display: block;
+    font-size: 0.7rem;
+    color: blue;
+}
+
+.mobile-list{
+    margin-top: 0.5rem;
+    margin-left: 0.6rem;
+    height: 100vh;
+    width: 78%;
+    background-color: white;
+    padding: 0.7rem;
+}
+
+.float-left{
+    float: left;
+}
