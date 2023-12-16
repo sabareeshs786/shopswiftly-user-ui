@@ -15,6 +15,7 @@ import PersistLogin from './components/authentication/PersistLogin';
 import Mobiles from './components/Mobiles';
 import LayoutAuth from './components/LayoutAuth';
 import LayoutNav from './components/LayoutNav';
+import ItemDisplay from './components/generic/ItemDisplay';
 
 const ROLES = {
   'User': 2001,
@@ -50,7 +51,10 @@ function App() {
       <Route path="/" element={<LayoutNav />}>
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="mobiles" element={<Mobiles />} />
+            <Route path="mobiles" >
+              <Route path="" element={<ItemDisplay />} />
+              <Route path="pr" element={<Mobiles />} />
+            </Route>
           </Route>
         </Route>
       </Route>

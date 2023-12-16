@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function ItemImage({filename, altText, caption}) {
   const baseUrl = 'http://localhost:3501/uploads/'
   return (
-    <Link to="#" className='item-image-container'>
+    <Link to="/mmm" className='item-image-container'>
         <img src={baseUrl + filename} alt={altText} />
         <div className='item-image-caption'>
             {caption}<br />
