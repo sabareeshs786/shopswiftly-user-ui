@@ -1,21 +1,21 @@
 @media (max-width: 575.98px){
 .main-container{
-    width: 100%;
-    margin: 0;
+    width: 99%;
+    margin: 0.1rem auto;
 }
 }
 
 @media (min-width: 576px) and (max-width: 991.98px){
     .main-container{
-        width: 100%;
-        margin: 0 auto;
+        width: 99%;
+        margin: 0.1rem auto;
     }
 }
 
 @media (min-width: 992px){
     .main-container{
         width: 80%;
-        margin: 0 auto;
+        margin: 0.1rem auto;
     }
 }
 
