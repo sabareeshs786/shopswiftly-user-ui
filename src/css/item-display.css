@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Mukta&family=Oswald&display=swap');
 
 .main-container-item {
     width: 90%;
@@ -36,7 +35,7 @@
     margin-top: 0.5rem;
     margin-left: 0.6rem;
     height: 100vh;
-    width: 82%;
+    width: 80%;
     background-color: white;
     padding: 0.7rem;
 }
@@ -86,7 +85,7 @@
     background-position: 100% center;
     border-radius: 0;
     border: 1px solid transparent;
-    border-bottom: 1px solid #575756;
+    border-bottom: 2px solid #575756;
     outline: 0;
 }
 

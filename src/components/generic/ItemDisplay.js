@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import axios, { all } from 'axios';
 import Slider from "@mui/material/Slider";
-import axios from 'axios';
-import '../../css/item-display.css';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -11,16 +10,18 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-
-
+import '../../css/item-display.css';
+import { toCapitalize } from '../../utils/UtilFunctions';
 
 function ItemDisplay() {
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
     const [brand, setBrand] = useState(queryParams.get('brand')?.split(','));
+    const [allBrands, setAllBrands] = useState([]);
+    const [brandOrder, setBrandOrder] = useState([]);
     const [sort, setSort] = useState(queryParams.get('sort'));
     const [data, setData] = useState(null);
-    const [range, setRange] = React.useState([5, 30]);
+    const [range, setRange] = useState([5, 30]);
     const [minMaxValues, setMinMaxValues] = useState({ min: 0, max: 100 });
     const formatValueLabel = (value) => `₹${value}`;
     const getAriaValueText = (value) => `₹${value}`;
@@ -29,20 +30,43 @@ function ItemDisplay() {
         setRange(newValue);
     }
 
+    const handleCheckboxChange = (event, brandName) => {
+        const isChecked = event.target.checked;
+
+        if (isChecked) {
+            setBrand((prevBrands) => [...prevBrands, brandName]);
+            // setBrandOrder((prevOrder) => prevOrder.filter((item) => brand.includes(item)).concat(allBrands.filter((item) => !brand.includes(item))));
+        } else {
+            setBrand((prevBrands) => prevBrands.filter((item) => item !== brandName));
+            // setBrandOrder((prevOrder) => prevOrder.filter((item) => brand.includes(item)).concat(allBrands.filter((item) => !brand.includes(item))));
+        }
+    };
+
     useEffect(() => {
         const getAndSetMinMax = async () => {
             try {
-                const response = axios.get("http://localhost:3501/items/minmax/mobiles?brand=oppo");
+                const response = await axios.get("http://localhost:3501/items/minmax/mobiles?brand=oppo");
                 const { minValue, maxValue } = (await response).data;
-                console.log(minValue, maxValue);
                 setMinMaxValues({ min: minValue, max: maxValue });
                 setRange([minValue, maxValue]);
-
             } catch (error) {
-                console.log()
+                console.log(error)
+            }
+        };
+        getAndSetMinMax();
+    }, []);
+
+    useEffect(() => {
+        const getAllBrands = async () => {
+            try {
+                const response = await axios.get("http://localhost:3501/items/all-brands/mobiles");
+                setAllBrands((response.data));
+                setBrandOrder(response.data);
+            } catch (error) {
+                console.log(error);
             }
         }
-        getAndSetMinMax();
+        getAllBrands();
     }, []);
 
     useEffect(() => {
@@ -103,14 +127,31 @@ function ItemDisplay() {
                                 <input class="search-input" type="text" placeholder="Search" />
                             </div>
                             <FormGroup>
-                                <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                                {brandOrder && brandOrder.length > 0 &&
+                                    brandOrder.map((e, i) =>
+                                        <FormControlLabel
+                                            key={i}
+                                            control={<Checkbox
+                                                defaultChecked={brand.includes(e)}
+                                                onChange={
+                                                    (event) => handleCheckboxChange(event, e)
+                                                } />}
+                                            label={toCapitalize(e)}
+                                        />)
+                                }
                             </FormGroup>
                         </AccordionDetails>
                     </Accordion>
                 </div>
             </div>
             <div className='mobile-list float-left'>
-                mobiles
+                {
+                    brandOrder
+                }
+                <br />
+                {
+                    brand
+                }
             </div>
         </div>
     )
