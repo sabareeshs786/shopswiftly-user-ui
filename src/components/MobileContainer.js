@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function MobileContainer() {
   const [dataArr, setDataArr] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     const brands = ["apple", "samsung", "oppo"];
     const fetchData = async (brand) => {
