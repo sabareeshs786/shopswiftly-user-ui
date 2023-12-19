@@ -31,13 +31,13 @@
     color: blue;
 }
 
-.mobile-list {
+.item-list {
     margin-top: 0.5rem;
     margin-left: 0.6rem;
     height: 100vh;
     width: 80%;
     background-color: white;
-    padding: 0.7rem;
+    padding: 1rem;
 }
 
 .cust-filter-content {

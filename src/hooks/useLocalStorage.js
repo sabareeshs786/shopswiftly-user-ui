@@ -26,4 +26,4 @@ const useLocalStorage = (key, initValue) => {
     return [value, setValue];
 }
 
-export default useLocalStorage 
+export default useLocalStorage; 
