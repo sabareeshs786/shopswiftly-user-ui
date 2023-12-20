@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function MyAccount({bgBlue=false}) {
     return (
         <div className="account">
-            <Link href="/account" role="button">
+            <Link to="/account" role="button">
                 <div className="my-account d-flex justify-content-left align-items-center">
                     <div>
                         <FontAwesomeIcon icon={faUserCircle} className="cust-svg"

@@ -4,8 +4,8 @@ import ItemContext from '../context/ItemContextProvider'
 import axios from 'axios';
 
 function PriceFilter() {
-    const {range, handleChanges, minMaxValues, formatValueLabel, getAriaValueText} = useContext(ItemContext);
-    const { setMinMaxValues, setRange, queryParams } = useContext(ItemContext);
+  const { range, handleChanges, minMaxValues, formatValueLabel, getAriaValueText } = useContext(ItemContext);
+  const { setMinMaxValues, setRange, queryParams } = useContext(ItemContext);
 
   useEffect(() => {
     const getAndSetMinMax = async () => {
@@ -21,25 +21,34 @@ function PriceFilter() {
     };
     getAndSetMinMax();
   }, []);
-    return (
-        <div className='price-filter'>
-            <div>
-                <label>Price</label>
-            </div>
-            <div>
-                <Slider
-                    value={range}
-                    onChange={handleChanges}
-                    valueLabelDisplay="auto"
-                    min={minMaxValues.min}
-                    max={minMaxValues.max}
-                    valueLabelFormat={formatValueLabel}
-                    getAriaValueText={getAriaValueText}
-                />
-            </div>
-            <center>₹{range[0]} to ₹{range[1]}</center>
+  return (
+    <div className='price-filter'>
+      <div>
+        <label>Price</label>
+      </div>
+      <div className='price-slider'>
+        <Slider
+          value={range}
+          onChange={handleChanges}
+          valueLabelDisplay="auto"
+          min={minMaxValues.min}
+          max={minMaxValues.max}
+          valueLabelFormat={formatValueLabel}
+          getAriaValueText={getAriaValueText}
+        />
+      </div>
+      <div className='price-range'>
+        <div className='price-start-range'>
+          ₹{range[0]}
         </div>
-    )
+        <div className='price-to-text'>
+          to
+        </div>
+        <div className='price-end-range'>
+          ₹{range[1]}
+        </div></div>
+    </div>
+  )
 }
 
-export default PriceFilter
+export default PriceFilter;
