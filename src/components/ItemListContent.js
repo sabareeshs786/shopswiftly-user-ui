@@ -3,11 +3,17 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { styled } from '@mui/system';
 import { Box, Tab } from '@mui/material';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ItemContext from '../context/ItemContextProvider';
+import axios from 'axios';
 
 function ItemListContent() {
-    const { tabNumber, handleTabChange } = useContext(ItemContext);
+    const sortBy = {
+        "1": "low-to-high",
+        "2": "high-to-low",
+        "3": "newest-first"
+    }
+    const { tabNumber, handleTabChange, brand, sort, queryParams } = useContext(ItemContext);
     const MyBox = styled(Box)({
         width: "100%",
         padding: 0
@@ -26,6 +32,15 @@ function ItemListContent() {
         textTransform: 'none',
         fontSize: '0.9rem',
     });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const queryParam = { preview: false, brand: queryParams.get('brand') };
+            const response = await axios.get('http://localhost:3501/items/mobiles', { params: queryParams });
+
+        }
+        fetchData();
+    }, [brand, sort]);
 
     return (
         <MyBox sx={{ width: '100%', typography: 'body1' }}>

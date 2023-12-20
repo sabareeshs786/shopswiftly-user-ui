@@ -1,12 +1,13 @@
 import { createContext, useState, useRef, useContext } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const ItemContext = createContext({});
 
 export const ItemContextProvider = ({ children }) => {
     
     // For filter
-    const { search } = useLocation();
+    const { pathname, search } = useLocation();
+    const history = useHistory();
     const queryParams = new URLSearchParams(search);
     const [brand, setBrand] = useState(queryParams.get('brand')?.split(','));
     const [allBrands, setAllBrands] = useState([]);
@@ -17,6 +18,7 @@ export const ItemContextProvider = ({ children }) => {
     const [minMaxValues, setMinMaxValues] = useState({ min: 0, max: 100 });
     const formatValueLabel = (value) => `₹${value}`;
     const getAriaValueText = (value) => `₹${value}`;
+    const currentUrl = pathname + search;
 
     // For item display panel
     const [tabNumber, setTabNumber] = useState('1');
@@ -31,10 +33,14 @@ export const ItemContextProvider = ({ children }) => {
         const isChecked = event.target.checked;
 
         if (isChecked) {
+
             setBrand((prevBrands) => [...prevBrands, brandName]);
+
             // setBrandOrder((prevOrder) => prevOrder.filter((item) => brand.includes(item)).concat(allBrands.filter((item) => !brand.includes(item))));
         } else {
+
             setBrand((prevBrands) => prevBrands.filter((item) => item !== brandName));
+            
             // setBrandOrder((prevOrder) => prevOrder.filter((item) => brand.includes(item)).concat(allBrands.filter((item) => !brand.includes(item))));
         }
     };
