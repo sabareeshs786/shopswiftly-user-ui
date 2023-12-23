@@ -89,7 +89,7 @@ function BrandFilter() {
                                 <MyFormControlLabel
                                     key={i}
                                     control={<MyCheckbox
-                                        defaultChecked={brand.includes(e)}
+                                        defaultChecked={brand?.includes(e)}
                                         onChange={
                                             (event) => handleCheckboxChange(event, e)
                                         }

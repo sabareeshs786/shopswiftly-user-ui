@@ -4,13 +4,13 @@ import ItemContext from '../context/ItemContextProvider'
 import axios from 'axios';
 
 function PriceFilter() {
-  const { range, handleChanges, minMaxValues, formatValueLabel, getAriaValueText } = useContext(ItemContext);
+  const { range, handleChanges, minMaxValues, formatValueLabel, getAriaValueText, brand } = useContext(ItemContext);
   const { setMinMaxValues, setRange, queryParams } = useContext(ItemContext);
 
   useEffect(() => {
     const getAndSetMinMax = async () => {
       try {
-        const queryParam = { preview: false, brand: queryParams.get('brand') };
+        const queryParam = { preview: false, "brand": brand?.join(',') };
         const response = await axios.get('http://localhost:3501/items/minmax/mobiles', { params: queryParam });
         const { minValue, maxValue } = response.data;
         setMinMaxValues({ min: minValue, max: maxValue });
@@ -20,7 +20,7 @@ function PriceFilter() {
       }
     };
     getAndSetMinMax();
-  }, []);
+  }, [brand]);
   return (
     <div className='price-filter'>
       <div>

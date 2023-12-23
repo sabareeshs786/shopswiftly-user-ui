@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 function ItemImage({filename, altText, caption, price}) {
-  const baseUrl = 'http://localhost:3501/uploads/'
+  const baseUrl = 'http://localhost:3501/uploads/';
   return (
     <Link to="/mmm" className='item-image-container'>
         <img src={baseUrl + filename} alt={altText} />

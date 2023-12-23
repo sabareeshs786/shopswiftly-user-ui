@@ -5,11 +5,12 @@
     margin: 0 auto;
 }
 
+/* For filter block */
 .cust-filter {
     margin-top: 0.5rem;
     padding: 0;
     width: 17%;
-    height: 100vh;
+    height: auto;
     background-color: white;
 }
 
@@ -32,15 +33,6 @@
     display: block;
     font-size: 0.7rem;
     color: blue;
-}
-
-.item-list {
-    margin-top: 0.5rem;
-    margin-left: 0.6rem;
-    height: 100vh;
-    width: 80%;
-    background-color: white;
-    padding: 1rem;
 }
 
 .cust-filter-content {
@@ -76,12 +68,12 @@
     opacity: 0.9;
 }
 
-.price-slider{
+.price-slider {
     padding-block: 0;
     padding-inline: 0.7rem;
 }
 
-.price-range{
+.price-range {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,17 +82,17 @@
     padding-inline: 0.6rem;
 }
 
-.price-start-range{
+.price-start-range {
     flex: 3;
     text-align: left;
 }
 
-.price-to-text{
+.price-to-text {
     flex: 1;
     text-align: center;
 }
 
-.price-end-range{
+.price-end-range {
     flex: 3;
     text-align: right;
 }
@@ -133,4 +125,66 @@
 .search-input:focus {
     background-color: white;
     border-bottom: 2px solid blue;
+}
+
+/* For item list block*/
+.item-list-header{
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+}
+
+.item-list {
+    margin-top: 0.5rem;
+    margin-left: 0.6rem;
+    height: auto;
+    width: 80%;
+    background-color: white;
+    padding: 0rem;
+}
+
+.item-display-main {
+    display: flex;
+    width: 100%;
+    margin-top: 0.4rem;
+    height: 25vh;
+    padding-block: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-bottom: 0.5px solid rgb(0, 0, 0, 0.2);
+    padding-inline: 0.4rem;
+}
+
+.item-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.item-display-main img {
+    height: 100%;
+}
+
+.item-display-desc {
+    padding-inline: 0.5rem;
+    padding-block: 0.3rem;
+    flex: 3;
+}
+
+.item-display-desc h5{
+    font-size: 1.3rem;
+}
+
+.item-features {
+    color: black;
+}
+
+.display-price {
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    flex: 2;
+}
+
+.display-price h3 {
+    font-weight: 500;
 }

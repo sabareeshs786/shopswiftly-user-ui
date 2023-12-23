@@ -3,9 +3,10 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { styled } from '@mui/system';
 import { Box, Tab } from '@mui/material';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ItemContext from '../context/ItemContextProvider';
 import axios from 'axios';
+import ItemDisplay from './ItemDisplay';
 
 function ItemListContent() {
     const sortBy = {
@@ -13,10 +14,12 @@ function ItemListContent() {
         "2": "high-to-low",
         "3": "newest-first"
     }
-    const { tabNumber, handleTabChange, brand, sort, queryParams } = useContext(ItemContext);
+    const { tabNumber, handleTabChange, brand, queryParams, range, pathname, navigate } = useContext(ItemContext);
+    const [itemDataArr, setItemDataArr] = useState(null);
     const MyBox = styled(Box)({
         width: "100%",
-        padding: 0
+        padding: 0,
+        height: 'auto'
     });
     const MyTab = styled(Tab)({
         textTransform: "none",
@@ -33,29 +36,46 @@ function ItemListContent() {
         fontSize: '0.9rem',
     });
 
+    const MyTabPanel = styled(TabPanel)({
+        padding: 0
+    })
+
     useEffect(() => {
         const fetchData = async () => {
-            const queryParam = { preview: false, brand: queryParams.get('brand') };
-            const response = await axios.get('http://localhost:3501/items/mobiles', { params: queryParams });
-
+            const queryParam = { preview: false, "brand": brand?.join(','), "min-price": range[0], "max-price": range[1], "sort": sortBy[tabNumber] };
+            const response = await axios.get('http://localhost:3501/items/mobiles', { params: queryParam });
+            console.log(response.data);
+            for (const key in queryParam) {
+                if (queryParam.hasOwnProperty(key)) {
+                    const value = queryParam[key];
+                    queryParams.set(key, value);
+                }
+            }
+            setItemDataArr(response.data);
+            if (queryParams)
+                navigate(pathname + '?' + queryParams.toString());
+            console.log("Search: ", queryParams.toString());
         }
         fetchData();
-    }, [brand, sort]);
+    }, [brand, tabNumber, range]);
 
     return (
         <MyBox sx={{ width: '100%', typography: 'body1' }}>
             <TabContext value={tabNumber}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleTabChange} aria-label="lab API tabs example">
+                    <TabList onChange={handleTabChange} aria-label="Sort By Tab">
                         <DisabledTab label="Sort by" disabled />
                         <MyTab label="Price -- Low to High" value="1" />
                         <MyTab label="Price -- High to Low" value="2" />
                         <MyTab label="Newest first" value="3" />
                     </TabList>
                 </Box>
-                <TabPanel value="1">
-
-                </TabPanel>
+                <MyTabPanel value="1">
+                    {
+                        itemDataArr &&
+                        itemDataArr?.map((itemData, ind) => <ItemDisplay itemData={itemData} key={ind} />)
+                    }
+                </MyTabPanel>
                 <TabPanel value="2">
 
                 </TabPanel>
@@ -67,4 +87,4 @@ function ItemListContent() {
     )
 }
 
-export default ItemListContent
+export default ItemListContent;
