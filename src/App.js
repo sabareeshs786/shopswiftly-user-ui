@@ -17,6 +17,9 @@ import LayoutAuth from './components/LayoutAuth';
 import LayoutNav from './components/LayoutNav';
 import Item from './components/generic/Item';
 import ViewItem from './components/ViewItem';
+import { Cart } from 'react-bootstrap-icons';
+import MyCart from './components/MyCart';
+import Checkout from './components/Checkout';
 
 const ROLES = {
   'User': 2001,
@@ -46,16 +49,19 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.Admin]} />}>
             <Route path="lounge" element={<Lounge />} />
           </Route>
+
         </Route>
       </Route>
 
       <Route path="/" element={<LayoutNav />}>
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="mobiles" >
+            <Route path="cart" element={<MyCart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="mobiles">
               <Route path="" element={<Item />} />
               <Route path="pr" element={<Mobiles />} />
-              <Route path="view-item" element={<ViewItem />}/>
+              <Route path="view-item" element={<ViewItem />} />
             </Route>
           </Route>
         </Route>

@@ -1,0 +1,54 @@
+
+.view-item-container{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+    padding: 1.3rem;
+    height: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.view-item-image{
+    min-width: 25%;
+    max-width: 50%;
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-item-image img{
+    display: block;
+}
+
+.view-item-btn{
+    width: 90%;
+    font-size: 1.2rem;
+    padding-inline: 0.3rem;
+    padding-block: 0.5rem;
+}
+
+.view-item-image a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    width: 50%;
+}
+
+.view-item-desc{
+    padding-left: 2.5rem;
+}
+
+.view-item-desc h5{
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.view-item-dp h3{
+    font-weight: 500;
+}
+
+.gray-color{
+    color: gray;
+}
+
