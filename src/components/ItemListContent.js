@@ -7,15 +7,26 @@ import React, { useContext, useEffect, useState } from 'react';
 import ItemContext from '../context/ItemContextProvider';
 import axios from 'axios';
 import ItemDisplay from './ItemDisplay';
+import ItemListPagination from './ItemListPagination';
+import LoadingAnimation from './LoadingAnimation';
+
 
 function ItemListContent() {
     const sortBy = {
         "1": "low-to-high",
         "2": "high-to-low",
         "3": "newest-first"
-    }
+    };
     const { tabNumber, handleTabChange, brand, queryParams, range, pathname, navigate } = useContext(ItemContext);
     const [itemDataArr, setItemDataArr] = useState(null);
+    const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = useState(1);
+    const [pageSize, setPageSize] = useState(5);
+    const [loading, setLoading] = useState(false);
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
     const MyBox = styled(Box)({
         width: "100%",
         padding: 0,
@@ -42,22 +53,94 @@ function ItemListContent() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const queryParam = { preview: false, "brand": brand?.join(','), "min-price": range[0], "max-price": range[1], "sort": sortBy[tabNumber] };
-            const response = await axios.get('http://localhost:3501/items/mobiles', { params: queryParam });
-            console.log(response.data);
-            for (const key in queryParam) {
-                if (queryParam.hasOwnProperty(key)) {
-                    const value = queryParam[key];
-                    queryParams.set(key, value);
-                }
+            try {
+                setLoading(true);
+                const custQueryParamPagination = {
+                    "brand": brand?.join(','),
+                    "min-price": range[0],
+                    "max-price": range[1]
+                };
+                const response = await axios.get('http://localhost:3501/items/get-pagination-data/mobiles', { params: custQueryParamPagination });
+                const countOfDocs = response.data.countOfDocs;
+                setPageCount(Math.ceil(countOfDocs / pageSize));
+            } catch (error) {
+                console.log(error);
             }
-            setItemDataArr(response.data);
-            if (queryParams)
-                navigate(pathname + '?' + queryParams.toString());
-            console.log("Search: ", queryParams.toString());
+            finally {
+            }
+        }
+        fetchData();
+    }, [brand, range]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const custQueryParam = {
+                    preview: false,
+                    "brand": brand?.join(','),
+                    "min-price": range[0],
+                    "max-price": range[1],
+                    "sort": sortBy[tabNumber],
+                    "page": 1,
+                    "pageSize": pageSize
+                };
+                const response = await axios.get('http://localhost:3501/items/mobiles', { params: custQueryParam });
+
+                for (const key in custQueryParam) {
+                    if (custQueryParam.hasOwnProperty(key)) {
+                        const value = custQueryParam[key];
+                        queryParams.set(key, value);
+                    }
+                }
+                console.log(response.data);
+                setItemDataArr(response.data);
+                setPage(1);
+                if (queryParams)
+                    navigate(pathname + '?' + queryParams.toString());
+            } catch (error) {
+                console.log(error);
+            }
+            finally {
+                setLoading(false);
+            }
         }
         fetchData();
     }, [brand, tabNumber, range]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const custQueryParam = {
+                    preview: false,
+                    "brand": brand?.join(','),
+                    "min-price": range[0],
+                    "max-price": range[1],
+                    "sort": sortBy[tabNumber],
+                    "page": page,
+                    "pageSize": pageSize
+                };
+                const response = await axios.get('http://localhost:3501/items/mobiles', { params: custQueryParam });
+
+                for (const key in custQueryParam) {
+                    if (custQueryParam.hasOwnProperty(key)) {
+                        const value = custQueryParam[key];
+                        queryParams.set(key, value);
+                    }
+                }
+                setItemDataArr(response.data);
+                if (queryParams)
+                    navigate(pathname + '?' + queryParams.toString());
+            } catch (error) {
+                console.log(error);
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, [page]);
 
     return (
         <MyBox sx={{ width: '100%', typography: 'body1' }}>
@@ -72,16 +155,47 @@ function ItemListContent() {
                 </Box>
                 <MyTabPanel value="1">
                     {
-                        itemDataArr &&
-                        itemDataArr?.map((itemData, ind) => <ItemDisplay itemData={itemData} key={ind} />)
+                        loading ? <LoadingAnimation /> :
+                            itemDataArr &&
+                            itemDataArr?.map((itemData, ind) => <ItemDisplay itemData={itemData} key={ind} />)
+                    }
+                    {
+                        !loading ? <ItemListPagination
+                            page={page}
+                            pageCount={pageCount}
+                            handlePageChange={handlePageChange}
+                        /> : ''
+                    }
+
+                </MyTabPanel>
+                <MyTabPanel value="2">
+                    {
+                        loading ? <LoadingAnimation /> :
+                            itemDataArr &&
+                            itemDataArr?.map((itemData, ind) => <ItemDisplay itemData={itemData} key={ind} />)
+                    }
+                    {
+                        !loading ? <ItemListPagination
+                            page={page}
+                            pageCount={pageCount}
+                            handlePageChange={handlePageChange}
+                        /> : ''
                     }
                 </MyTabPanel>
-                <TabPanel value="2">
-
-                </TabPanel>
-                <TabPanel value="3">
-
-                </TabPanel>
+                <MyTabPanel value="3">
+                    {
+                        loading ? <LoadingAnimation /> :
+                            itemDataArr &&
+                            itemDataArr?.map((itemData, ind) => <ItemDisplay itemData={itemData} key={ind} />)
+                    }
+                    {
+                        !loading ? <ItemListPagination
+                            page={page}
+                            pageCount={pageCount}
+                            handlePageChange={handlePageChange}
+                        /> : ''
+                    }
+                </MyTabPanel>
             </TabContext>
         </MyBox>
     )

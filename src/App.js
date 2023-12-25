@@ -16,6 +16,7 @@ import Mobiles from './components/Mobiles';
 import LayoutAuth from './components/LayoutAuth';
 import LayoutNav from './components/LayoutNav';
 import Item from './components/generic/Item';
+import ViewItem from './components/ViewItem';
 
 const ROLES = {
   'User': 2001,
@@ -54,6 +55,7 @@ function App() {
             <Route path="mobiles" >
               <Route path="" element={<Item />} />
               <Route path="pr" element={<Mobiles />} />
+              <Route path="view-item" element={<ViewItem />}/>
             </Route>
           </Route>
         </Route>
