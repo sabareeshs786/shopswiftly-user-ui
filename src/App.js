@@ -17,7 +17,6 @@ import LayoutAuth from './components/LayoutAuth';
 import LayoutNav from './components/LayoutNav';
 import Item from './components/generic/Item';
 import ViewItem from './components/ViewItem';
-import { Cart } from 'react-bootstrap-icons';
 import MyCart from './components/MyCart';
 import Checkout from './components/Checkout';
 
