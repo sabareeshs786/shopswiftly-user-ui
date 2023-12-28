@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { indianNumberFormat } from '../utils/UtilFunctions';
 
 function ItemDisplay({ itemData, ind }) {
-    const baseUrl = 'http://localhost:3501/uploads/';
+    const baseUrl = 'http://localhost:3501/images/';
 
     return (
         <Link key={ind} to={"view-item?id=" + itemData?._id} target="_blank" className='item-display-main'>

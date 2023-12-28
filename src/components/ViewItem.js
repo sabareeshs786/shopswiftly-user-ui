@@ -7,7 +7,7 @@ import FlashOnOutlinedIcon from '@mui/icons-material/FlashOnOutlined';
 import { indianNumberFormat } from '../utils/UtilFunctions';
 
 function ViewItem() {
-    const baseUrl = 'http://localhost:3501/uploads/';
+    const baseUrl = 'http://localhost:3501/images/';
 
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
