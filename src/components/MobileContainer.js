@@ -14,7 +14,7 @@ function MobileContainer() {
     const fetchData = async (brand) => {
       try {
         const queryParams = { preview: true, brand: brand };
-        const response = await axios.get('http://localhost:3501/items/mobiles', { params: queryParams });
+        const response = await axios.get('http://localhost:3501/products/mobiles', { params: queryParams });
         console.log(response);
         setDataArr(prevDataArr => [...prevDataArr, response.data]);
       } catch (error) {

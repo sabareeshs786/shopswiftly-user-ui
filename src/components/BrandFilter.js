@@ -59,7 +59,7 @@ function BrandFilter() {
     useEffect(() => {
         const getAllBrands = async () => {
             try {
-                const response = await axios.get("http://localhost:3501/items/all-brands/mobiles");
+                const response = await axios.get("http://localhost:3501/products/all-brands/mobiles");
                 setAllBrands((response.data));
                 setBrandOrder(response.data);
             } catch (error) {

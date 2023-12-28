@@ -60,7 +60,7 @@ function ItemListContent() {
                     "min-price": range[0],
                     "max-price": range[1]
                 };
-                const response = await axios.get('http://localhost:3501/items/get-pagination-data/mobiles', { params: custQueryParamPagination });
+                const response = await axios.get('http://localhost:3501/products/get-pagination-data/mobiles', { params: custQueryParamPagination });
                 const countOfDocs = response.data.countOfDocs;
                 setPageCount(Math.ceil(countOfDocs / pageSize));
             } catch (error) {
@@ -85,7 +85,7 @@ function ItemListContent() {
                     "page": 1,
                     "pageSize": pageSize
                 };
-                const response = await axios.get('http://localhost:3501/items/mobiles', { params: custQueryParam });
+                const response = await axios.get('http://localhost:3501/products/mobiles', { params: custQueryParam });
 
                 for (const key in custQueryParam) {
                     if (custQueryParam.hasOwnProperty(key)) {
@@ -121,7 +121,7 @@ function ItemListContent() {
                     "page": page,
                     "pageSize": pageSize
                 };
-                const response = await axios.get('http://localhost:3501/items/mobiles', { params: custQueryParam });
+                const response = await axios.get('http://localhost:3501/products/mobiles', { params: custQueryParam });
 
                 for (const key in custQueryParam) {
                     if (custQueryParam.hasOwnProperty(key)) {

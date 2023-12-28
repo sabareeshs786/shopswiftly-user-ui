@@ -17,7 +17,7 @@ function ViewItem() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3501/item/mobiles', { params: { id: id } });
+                const response = await axios.get('http://localhost:3501/product/mobiles', { params: { id: id } });
                 setItemData(response.data);
             } catch (error) {
                 console.log(error);
