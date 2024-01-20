@@ -1,7 +1,7 @@
-import Logo from "../components/generic/Logo";
-import SearchBar from "../components/generic/SearchBar";
+import Logo from "./generic/Logo";
+import SearchBar from "./generic/SearchBar";
 import MyAccount from "./generic/MyAccount";
-import CartIcon from "../components/generic/CartIcon";
+import CartIcon from "./generic/CartIcon";
 import '../css/header.css';
 
 function HomeHeader({bgBlue=false}) {

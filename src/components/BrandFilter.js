@@ -57,7 +57,7 @@ function BrandFilter() {
     const { setAllBrands, setBrandOrder } = useContext(ItemContext);
 
     useEffect(() => {
-        const getAllBrands = async () => {
+        const getBrandsByCategory = async () => {
             try {
                 const response = await axios.get("http://localhost:3501/products/all-brands/mobiles");
                 setAllBrands((response.data));
@@ -66,7 +66,7 @@ function BrandFilter() {
                 console.log(error);
             }
         }
-        getAllBrands();
+        getBrandsByCategory();
     }, []);
 
     return (
