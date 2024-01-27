@@ -21,9 +21,9 @@ import MyCart from './components/MyCart';
 import Checkout from './components/Checkout';
 
 const ROLES = {
-  'User': 2001,
-  'Editor': 1984,
-  'Admin': 5150
+  "Admin": 51507865,
+  "Editor": 1984078,
+  "User": 2001345
 }
 
 function App() {

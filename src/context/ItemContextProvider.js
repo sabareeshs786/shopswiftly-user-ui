@@ -14,8 +14,8 @@ export const ItemContextProvider = ({ children }) => {
     const [brandOrder, setBrandOrder] = useState([]);
     const [sort, setSort] = useState(queryParams.get('sort'));
     const [data, setData] = useState(null);
-    const [range, setRange] = useState([5, 30]);
-    const [minMaxValues, setMinMaxValues] = useState({ min: 0, max: 100 });
+    const [range, setRange] = useState([null, null]);
+    const [minMaxValues, setMinMaxValues] = useState({ min: null, max: null });
     const formatValueLabel = (value) => `₹${value}`;
     const getAriaValueText = (value) => `₹${value}`;
 

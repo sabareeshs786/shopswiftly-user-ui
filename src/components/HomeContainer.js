@@ -8,7 +8,7 @@ function HomeContainer() {
         <>
             <div className="main-container">
                 <Navigation />
-                <Carousel />
+                {/* <Carousel /> */}
                 <SwiperComponent />
                 <SwiperComponent />
                 <SwiperComponent />

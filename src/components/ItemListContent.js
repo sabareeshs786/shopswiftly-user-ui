@@ -9,13 +9,14 @@ import axios from 'axios';
 import ItemDisplay from './ItemDisplay';
 import ItemListPagination from './ItemListPagination';
 import LoadingAnimation from './LoadingAnimation';
+import { removeEmptyParams } from '../utils/UtilFunctions';
 
 
 function ItemListContent() {
     const sortBy = {
-        "1": "low-to-high",
-        "2": "high-to-low",
-        "3": "newest-first"
+        "1": "lth",
+        "2": "htl",
+        "3": "nf"
     };
     const { tabNumber, handleTabChange, brand, queryParams, range, pathname, navigate } = useContext(ItemContext);
     const [itemDataArr, setItemDataArr] = useState(null);
@@ -54,38 +55,28 @@ function ItemListContent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                console.log('Brand and price filter');
                 setLoading(true);
-                const custQueryParamPagination = {
+                const filterqueryparams = removeEmptyParams({
                     "brand": brand?.join(','),
                     "min-price": range[0],
                     "max-price": range[1]
-                };
-                const response = await axios.get('http://localhost:3501/products/get-pagination-data/mobiles', { params: custQueryParamPagination });
-                const countOfDocs = response.data.countOfDocs;
+                });
+                const filterResponse = await axios.get('http://localhost:3503/products/get-pagination-data/mobiles', { params: filterqueryparams });
+                const countOfDocs = filterResponse.data.countOfDocs;
                 setPageCount(Math.ceil(countOfDocs / pageSize));
-            } catch (error) {
-                console.log(error);
-            }
-            finally {
-            }
-        }
-        fetchData();
-    }, [brand, range]);
+                setPage(1);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
                 const custQueryParam = {
                     preview: false,
                     "brand": brand?.join(','),
                     "min-price": range[0],
                     "max-price": range[1],
                     "sort": sortBy[tabNumber],
-                    "page": 1,
+                    "page": page,
                     "pageSize": pageSize
                 };
-                const response = await axios.get('http://localhost:3501/products/mobiles', { params: custQueryParam });
+                const response = await axios.get('http://localhost:3503/products/mobiles', { params: custQueryParam });
 
                 for (const key in custQueryParam) {
                     if (custQueryParam.hasOwnProperty(key)) {
@@ -93,8 +84,55 @@ function ItemListContent() {
                         queryParams.set(key, value);
                     }
                 }
-                console.log(response.data);
+
                 setItemDataArr(response.data);
+                if (queryParams)
+                    navigate(pathname + '?' + queryParams.toString());
+            } catch (error) {
+                console.log(error);
+            }
+            finally {
+                setLoading(false)
+            }
+        }
+        fetchData();
+    }, [range]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log('tabnumber');
+                setLoading(true);
+                const filterqueryparams = removeEmptyParams({
+                    "brand": brand?.join(','),
+                    "min-price": range[0],
+                    "max-price": range[1]
+                });
+                const filterResponse = await axios.get('http://localhost:3503/products/get-pagination-data/mobiles', { params: filterqueryparams });
+                const countOfDocs = filterResponse.data.countOfDocs;
+
+                const queryparams = removeEmptyParams({
+                    preview: false,
+                    "brand": brand?.join(','),
+                    "min-price": range[0],
+                    "max-price": range[1],
+                    "sort": sortBy[tabNumber],
+                    "page": 1,
+                    "pageSize": pageSize
+                });
+                
+                const listResponse = await axios.get('http://localhost:3503/products/mobiles', { params: queryparams });
+
+                for (const key in queryparams) {
+                    if (queryparams.hasOwnProperty(key)) {
+                        const value = queryparams[key];
+                        queryParams.set(key, value);
+                    }
+                }
+                
+                setPageCount(Math.ceil(countOfDocs / pageSize));
+
+                setItemDataArr(listResponse.data);
                 setPage(1);
                 if (queryParams)
                     navigate(pathname + '?' + queryParams.toString());
@@ -106,12 +144,13 @@ function ItemListContent() {
             }
         }
         fetchData();
-    }, [brand, tabNumber, range]);
+    }, [tabNumber]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
+                console.log('Page loading')
                 const custQueryParam = {
                     preview: false,
                     "brand": brand?.join(','),
@@ -121,7 +160,7 @@ function ItemListContent() {
                     "page": page,
                     "pageSize": pageSize
                 };
-                const response = await axios.get('http://localhost:3501/products/mobiles', { params: custQueryParam });
+                const response = await axios.get('http://localhost:3503/products/mobiles', { params: custQueryParam });
 
                 for (const key in custQueryParam) {
                     if (custQueryParam.hasOwnProperty(key)) {

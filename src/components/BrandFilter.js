@@ -59,7 +59,7 @@ function BrandFilter() {
     useEffect(() => {
         const getBrandsByCategory = async () => {
             try {
-                const response = await axios.get("http://localhost:3501/products/all-brands/mobiles");
+                const response = await axios.get("http://localhost:3503/products/all-brands/mobiles");
                 setAllBrands((response.data));
                 setBrandOrder(response.data);
             } catch (error) {
@@ -80,8 +80,8 @@ function BrandFilter() {
                     <MyTypography>Brands</MyTypography>
                 </MyAccordionSummary>
                 <MyAccordionDetails>
-                    <div class="search-container">
-                        <input class="search-input" type="text" placeholder="Search" />
+                    <div className="search-container">
+                        <input className="search-input" type="text" placeholder="Search" />
                     </div>
                     <MyFormGroup>
                         {brandOrder && brandOrder.length > 0 &&

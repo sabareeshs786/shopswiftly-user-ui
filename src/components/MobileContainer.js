@@ -14,7 +14,7 @@ function MobileContainer() {
     const fetchData = async (brand) => {
       try {
         const queryParams = { preview: true, brand: brand };
-        const response = await axios.get('http://localhost:3501/products/mobiles', { params: queryParams });
+        const response = await axios.get('http://localhost:3503/products/mobiles', { params: queryParams });
         console.log(response);
         setDataArr(prevDataArr => [...prevDataArr, response.data]);
       } catch (error) {
@@ -32,14 +32,15 @@ function MobileContainer() {
       {dataArr && dataArr.length > 0 &&
         dataArr.map((e, i) => 
           (
+            e && e.length > 0 &&
             <div key={i} className="item-flex-container">
               <div className="item-flex-header">
-                <h2>{e && e.length > 0 ? e[0].brand.charAt(0).toUpperCase() + e[0].brand.slice(1) : ''} smartphones</h2>
-                <Link to={"/mobiles?min-price=&max-price=&brand=" + e[0].brand + "&sort=low-to-high"}><button className='btn btn-primary'>View all</button></Link>
+                <h2>{ e[0]?.brand?.charAt(0).toUpperCase() + e[0]?.brand?.slice(1) } smartphones</h2>
+                <Link to={"/mobiles?brand=" + e[0].brand + "&sort=lth"}><button className='btn btn-primary'>View all</button></Link>
               </div>
               <div className='item-flex-items'>
-                {e && e.length > 0 && e.map((imgData, index) =>
-                  <ItemImage key={index} filename={imgData.imageUrl} altText={imgData.name} caption={imgData.name} price={imgData.price}/>
+                { e.map((r, index) =>
+                  <ItemImage key={index} filename={r.imageFilenames[r.imageFilenames.length - 1]} altText={r.pname} caption={r.pname} price={r.sp}/>
                 )}
               </div>
             </div>

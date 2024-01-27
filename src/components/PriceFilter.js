@@ -11,16 +11,17 @@ function PriceFilter() {
     const getAndSetMinMax = async () => {
       try {
         const queryParam = { preview: false, "brand": brand?.join(',') };
-        const response = await axios.get('http://localhost:3501/products/minmax/mobiles', { params: queryParam });
+        const response = await axios.get('http://localhost:3503/products/minmax/mobiles', { params: queryParam });
         const { minValue, maxValue } = response.data;
         setMinMaxValues({ min: minValue, max: maxValue });
         setRange([minValue, maxValue]);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     getAndSetMinMax();
   }, [brand]);
+  
   return (
     <div className='price-filter'>
       <div>
