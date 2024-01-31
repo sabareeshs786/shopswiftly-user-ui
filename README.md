@@ -34,7 +34,7 @@ Follow the below steps to set up the microservice in your local machine:
     
     https://github.com/sabareeshs786/shopswiftly-inventory
     
-    https://github.com/sabareeshs786/shopswiftly-user-ui
+    https://github.com/sabareeshs786/shopswiftly-admin-ui
 
     https://github.com/sabareeshs786/shopswiftly-listing-display
 
