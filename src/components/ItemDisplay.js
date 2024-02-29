@@ -6,7 +6,7 @@ function ItemDisplay({ itemData, ind }) {
     const baseUrl = 'http://localhost:3502/images/';
 
     return (
-        <Link key={ind} to={"view-item?id=" + itemData?._id} target="_blank" className='item-display-main'>
+        <Link key={ind} to={"view?id=" + itemData?._id} target="_blank" className='item-display-main'>
             <div className='item-image'>
                 <img src={baseUrl + itemData?.imageFilenames[itemData.imageFilenames?.length - 1]} alt={itemData?.pname} />
             </div>

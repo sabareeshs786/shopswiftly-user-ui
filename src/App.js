@@ -31,47 +31,37 @@ function App() {
   return (
     <Routes>
       {/* Protected routes */}
+
+      {/* These are publicly accessible routes */}
       <Route path="/" element={<Layout />} >
-        <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="/" element={<Home />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.Editor]} />}>
-            <Route path="editor" element={<Editor />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-            <Route path="admin" element={<Admin />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.Admin]} />}>
-            <Route path="lounge" element={<Lounge />} />
-          </Route>
-
-        </Route>
+        <Route path="" element={<Home />} />
       </Route>
 
       <Route path="/" element={<LayoutNav />}>
-        <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="cart" element={<MyCart />} />
-            <Route path="checkout" element={<Checkout />} />
-            <Route path="mobiles">
-              <Route path="" element={<Item />} />
-              <Route path="pr" element={<Mobiles />} />
-              <Route path="view-item" element={<ViewItem />} />
-            </Route>
-          </Route>
+        <Route path="cart" element={<MyCart />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="mobiles">
+          <Route path="" element={<Item />} />
+          <Route path="pr" element={<Mobiles />} />
+          <Route path="view" element={<ViewItem />} />
         </Route>
+
       </Route>
 
-      {/* These are publicly accessible routes */}
+      {/* These are authentication & authorization routes */}
       <Route path="/" element={<LayoutAuth />}>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="linkpage" element={<LinkPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
+      </Route>
+
+          <Route path="/" element={<Layout />} >
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+            <Route path="pay" element={<Home />} />
+          </Route>
+        </Route>
       </Route>
 
       {/* catch all */}
