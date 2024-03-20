@@ -77,7 +77,8 @@ function ItemListContent() {
                     "pageSize": pageSize
                 };
                 const response = await axios.get('http://localhost:3503/products/mobiles', { params: custQueryParam });
-
+                console.log("Products");
+                console.log(response);
                 for (const key in custQueryParam) {
                     if (custQueryParam.hasOwnProperty(key)) {
                         const value = custQueryParam[key];

@@ -7,7 +7,7 @@ import FlashOnOutlinedIcon from '@mui/icons-material/FlashOnOutlined';
 import { indianNumberFormat } from '../utils/UtilFunctions';
 
 function ViewItem() {
-    const baseUrl = 'http://localhost:3501/images/';
+    const baseUrl = 'http://localhost:3502/images/';
 
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
@@ -17,18 +17,20 @@ function ViewItem() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3501/product/mobiles', { params: { id: id } });
-                setItemData(response.data);
+                const response = await axios.get('http://localhost:3503/product/mobiles', { params: { id: id } });
+                setItemData(response.data[0]);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchData();
     }, []);
+
     return (
+        itemData === null ? (<h1>loading</h1>) :
         <div className='view-item-container'>
             <div className='view-item-image'>
-                <img src={baseUrl + itemData?.imageUrl} alt={itemData?.name} />
+                <img src={baseUrl + itemData?.imageFilenames[itemData.imageFilenames.length - 1]} alt={itemData?.name} />
                 <div>
                     <Link to="/cart"><button className='btn btn-success view-item-btn'> <AddShoppingCartOutlinedIcon /> Add to cart</button></Link>
                     <Link to="/checkout"><button className='btn btn-primary view-item-btn'> <FlashOnOutlinedIcon />Buy now</button></Link>
